@@ -23,6 +23,7 @@ public class Task {
 
     public static void multiThread() {
         System.out.println("ololo");
+        System.out.println("commit");
         Thread[] threads = new Thread[threadVal];
         float array[] = new float[size];
         for (int i = 0; i < array.length; i++) {
