@@ -25,7 +25,6 @@ public class Task {
         System.out.println("ololo");
         System.out.println("commit");
         System.out.println("bad change");
-        System.out.println("bad change2");
         Thread[] threads = new Thread[threadVal];
         float array[] = new float[size];
         for (int i = 0; i < array.length; i++) {
