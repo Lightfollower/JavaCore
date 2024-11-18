@@ -22,9 +22,9 @@ public class Task {
     }
 
     public static void multiThread() {
-        System.out.println("ololo");
-        System.out.println("commit");
-        System.out.println("bad change");
+        System.out.println("ololo;");
+        System.out.println("commit;");
+        System.out.println("bad change;");
         System.out.println("some change");
         System.out.println("Rename");
         System.out.println("new branch");
