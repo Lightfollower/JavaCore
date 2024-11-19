@@ -27,8 +27,8 @@ public class Task {
         System.out.println("bad change;");
         System.out.println("some change;");
         System.out.println("Rename;");
-        System.out.println("new branch;");
         System.out.println("Huilo");
+        System.out.println("fetch change");
         Thread[] threads = new Thread[threadVal];
         float array[] = new float[size];
         for (int i = 0; i < array.length; i++) {
