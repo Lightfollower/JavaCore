@@ -1,8 +1,8 @@
 package Lesson_5;
 
 public class Task {
-    static final int size = 100000000;
-    static final int threadVal = 20;
+    static final int size = 10000000;
+    static final int threadVal = 8;
 
     public static void main(String[] args) {
         oneThread();
@@ -22,13 +22,6 @@ public class Task {
     }
 
     public static void multiThread() {
-        System.out.println("ololo;");
-        System.out.println("commit;");
-        System.out.println("bad change;");
-        System.out.println("some change;");
-        System.out.println("Rename;");
-        System.out.println("Huilo");
-        System.out.println("fetch change");
         Thread[] threads = new Thread[threadVal];
         float array[] = new float[size];
         for (int i = 0; i < array.length; i++) {
@@ -55,8 +48,14 @@ public class Task {
                         }
                     }
                     System.arraycopy(array, shift, croppedArrays[finalI], 0, croppedArrays[finalI].length);
+                    int iterationCorrection = 0;
+                    if (finalI != 0) {
+                    for (int j = 0; j < finalI; j++) {
+                            iterationCorrection += arrayLengths[j];
+                        }
+                    }
                     for (int j = 0; j < croppedArrays[finalI].length; j++) {
-                        croppedArrays[finalI][j] = (float) (croppedArrays[finalI][j] * Math.sin(0.2f + j / 5) * Math.cos(0.2f + j / 5) * Math.cos(0.4f + j / 2));
+                        croppedArrays[finalI][j] = (float) (croppedArrays[finalI][j] * Math.sin(0.2f + (j + iterationCorrection) / 5) * Math.cos(0.2f + (j + iterationCorrection) / 5) * Math.cos(0.4f + (j + iterationCorrection) / 2));
                     }
                 }
             });
