@@ -151,7 +151,10 @@ public class Test {
 class TestInc {
     public static void main(String[] args) {
         int x = 0;
-        System.out.print(x++==++x);
+//        System.out.println(x++==++x);
+        System.out.println(x++);
+//        System.out.println(0 == --x);
+        System.out.println(--x);
     }
 }
 

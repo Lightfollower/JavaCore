@@ -106,17 +106,17 @@ interface Run {
 
 
 abstract class Animal implements Run {
-    //    protected String name;
-//    protected int z;
-//
-//    public Animal(String name) {
-//        this.name = name;
-//    }
-//
+        protected String name;
+    protected int z;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+
 //    public void info() {
 //        System.out.println("Animal");
 //    }
-    abstract void test1();
+//    abstract void test1();
 
     public void info() {
         System.out.println("Animal");
@@ -126,37 +126,43 @@ abstract class Animal implements Run {
 
 
 
-//class Cat extends Animal {
-//
-//    protected int y;
-//
-//    public Cat(String name, int y) {
-//        super(name);
-//        this.y = y;
-//    }
-//
-//    public void info() {
-//        System.out.println("Cat");
-//    }
-//}
-//
-//class SuperCat extends Cat {
-//
-//    protected int i;
-//
-//    public SuperCat(String name, int y, int i) {
-//        super(name, y);
-//        this.i = i;
-//    }
-//
-//    void test() {
-//        super.z = 10;
-//    }
-//
-//    public void info() {
-//        System.out.println("SuperCat");
-//    }
-//}
+class Cat extends Animal {
+
+    protected int y;
+//    int z;
+
+    public Cat(String name, int y) {
+        super(name);
+        this.y = y;
+    }
+
+    public void info() {
+        System.out.println("Cat");
+    }
+
+    @Override
+    public void run() {
+
+    }
+}
+
+class SuperCat extends Cat {
+
+    protected int i;
+
+    public SuperCat(String name, int y, int i) {
+        super(name, y);
+        this.i = i;
+    }
+
+    void test() {
+        super.z = 10;
+    }
+
+    public void info() {
+        System.out.println("SuperCat");
+    }
+}
 
 class MainZoo implements Run {
     public static void main(String[] args) {
