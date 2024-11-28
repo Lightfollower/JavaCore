@@ -1,5 +1,6 @@
 package Lesson_6.Client;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -44,6 +45,9 @@ public class Controller implements Initializable {
                     try {
                         while (true) {
                             String str = in.readUTF();
+                            if(str.equals("/serverClosed")){
+                                break;
+                            }
                             textArea.appendText(str + "\n");
                         }
                     } catch (IOException e) {
@@ -51,6 +55,7 @@ public class Controller implements Initializable {
                     } finally {
                         try {
                             socket.close();
+                            Platform.exit();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
