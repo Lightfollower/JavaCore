@@ -38,14 +38,13 @@ public class Controller implements Initializable {
             socket = new Socket(IP_ADRESS, PORT);
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
                         while (true) {
                             String str = in.readUTF();
-                            if(str.equals("/serverClosed")){
+                            if (str.equals("/serverClosed")) {
                                 break;
                             }
                             textArea.appendText(str + "\n");
@@ -62,9 +61,9 @@ public class Controller implements Initializable {
                     }
                 }
             }).start();
-
         } catch (IOException e) {
             e.printStackTrace();
+            Platform.exit();
         }
     }
 

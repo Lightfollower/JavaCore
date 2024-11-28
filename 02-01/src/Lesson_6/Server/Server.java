@@ -1,7 +1,6 @@
 package Lesson_6.Server;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
@@ -46,5 +45,8 @@ public class Server {
         for (ClientHandler o: clients) {
             o.sendMsg(msg);
         }
+    }
+    void removeClient (ClientHandler clientHandler){
+        clients.remove(clientHandler);
     }
 }
