@@ -1,6 +1,7 @@
 package Lesson_6.Server;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
@@ -16,6 +17,7 @@ public class Server {
         try {
             server = new ServerSocket(8189);
             System.out.println("Сервер запущен!");
+
 
             while (true) {
                 socket = server.accept();

@@ -17,15 +17,20 @@ public class ClientHandler {
             this.server = server;
             this.in = new DataInputStream(socket.getInputStream());
             this.out = new DataOutputStream(socket.getOutputStream());
-            System.out.println("Handler created");
+//            System.out.println("Handler created");
+//            Scanner scanner = new Scanner(in);
+//            PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
+
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
                         while (true) {
-                            System.out.println(in);
                             String str = in.readUTF();
+//                            String str = scanner.nextLine();
                             System.out.println("Client " + str);
+//                            printWriter.println("echo " + str);
+//                            printWriter.flush();
                             if (str.equals("/end")) {
                                 out.writeUTF("/serverClosed");
                                 break;
