@@ -33,6 +33,7 @@ public class ClientHandler {
 //                            printWriter.flush();
                             if (str.equals("/end")) {
                                 out.writeUTF("/serverClosed");
+                                server.removeClient(ClientHandler.this);
                                 break;
                             }
                             server.broadcastMsg(str);
@@ -68,6 +69,7 @@ public class ClientHandler {
         try {
             out.writeUTF(msg);
         } catch (IOException e) {
+            server.removeClient(this);
             e.printStackTrace();
         }
     }
