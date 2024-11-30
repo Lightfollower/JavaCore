@@ -29,11 +29,27 @@ public class ClientHandler {
                             if (str.startsWith("/auth")) {
                                 String[] tokens = str.split(" ");
                                 String newNick = AuthService.getNickByLoginAndPass(tokens[1], tokens[2]);
+                                boolean userAlreadyConnected = false;
                                 if (newNick != null) {
                                     sendMsg("/authok");
                                     nick = newNick;
-                                    server.subscribe(ClientHandler.this);
-                                    break;
+                                    for (ClientHandler o :
+                                            server.getClients()) {
+                                        if (o.nick.equals(newNick)) {
+                                            sendMsg("You're already here, mr. Durden");
+                                            userAlreadyConnected = true;
+                                            break;
+                                        }
+                                        server.subscribe(ClientHandler.this);
+                                        break;
+                                    }
+                                    if (!userAlreadyConnected) {
+                                        sendMsg("/authok");
+                                        nick = newNick;
+                                        server.subscribe(ClientHandler.this);
+                                        System.out.println(server.getClients());
+                                        break;
+                                    }
                                 } else {
                                     sendMsg("Неверный логин/пароль!");
                                 }
@@ -46,6 +62,15 @@ public class ClientHandler {
                             if (str.equals("/end")) {
                                 out.writeUTF("/serverClosed");
                                 break;
+                            }
+                            if (str.startsWith("/w")) {
+                                String[] tokens = str.split(" ", 3);
+                                if (tokens.length > 1) {
+                                    server.sendPrivateMsg("Private message from " +
+                                            nick + ": " + (tokens.length == 3 ? tokens[2] : "_"), ClientHandler.this, tokens[1]);
+                                    out.writeUTF("Message for " + tokens[1] + ": " + (tokens.length == 3 ? tokens[2] : "_"));
+                                }
+                                continue;
                             }
                             server.broadcastMsg(nick + ": " + str);
                         }
@@ -85,5 +110,9 @@ public class ClientHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getNick() {
+        return nick;
     }
 }

@@ -44,9 +44,20 @@ public class Server {
     }
 
     public void broadcastMsg(String msg) {
-        for (ClientHandler o: clients) {
+        for (ClientHandler o : clients) {
             o.sendMsg(msg);
         }
+    }
+
+    public void sendPrivateMsg(String msg, ClientHandler sender, String destination) {
+        for (ClientHandler o :
+                clients) {
+            if (o.getNick().equals(destination)) {
+                o.sendMsg(msg);
+                return;
+            }
+        }
+        sender.sendMsg("Nobody is at home");
     }
 
     public void subscribe(ClientHandler client) {
@@ -57,4 +68,7 @@ public class Server {
         clients.remove(client);
     }
 
+    public Vector<ClientHandler> getClients() {
+        return clients;
+    }
 }
